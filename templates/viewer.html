@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3D Model Viewer</title>
+    <style>
+        body { margin: 0; overflow: hidden; }
+        canvas { display: block; }
+        #loading {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 100;
+        }
+    </style>
+</head>
+<body>
+    <div id="loading">Loading 3D model...</div>
+    
+    <!-- Import modules with proper paths -->
+    <script type="importmap">
+    {
+        "imports": {
+            "three": "/static/js/three.module.min.js",
+            "three/examples/jsm/controls/OrbitControls": "https://unpkg.com/three@0.132.2/examples/jsm/controls/OrbitControls.js",
+            "three/examples/jsm/loaders/GLTFLoader": "https://unpkg.com/three@0.132.2/examples/jsm/loaders/GLTFLoader.js"
+        }
+    }
+    </script>
+
+    <!-- Pass model path from Flask -->
+    <script>
+        const modelFile = "{{ model_file }}";
+        console.log("Loading model from:", modelFile);
+    </script>
+
+    <!-- Load main script -->
+    <script type="module" src="/static/js/main.js"></script>
+</body>
+</html>

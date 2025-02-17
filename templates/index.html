@@ -1,0 +1,56 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>NEXR</title>
+</head>
+<body class="bg-blue-100 min-h-screen flex items-center justify-center">
+    <div class="bg-white p-8 rounded-lg shadow-lg max-w-md w-full">
+        <h1 class="text-2xl font-bold mb-6 text-center text-blue-500">Nexr Vision</h1>
+        <h1 class="text-2xl font-bold mb-6 text-center text-gray-800">Upload 3D Model</h1>
+        
+        <form method="POST" enctype="multipart/form-data" class="space-y-4">
+            <div class="flex items-center justify-center w-full">
+                <label class="w-full flex flex-col items-center px-4 py-6 bg-white rounded-lg shadow-lg tracking-wide border border-blue-500 cursor-pointer hover:bg-blue-500 hover:text-white">
+                    <svg class="w-8 h-8" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                        <path d="M16.88 9.1A4 4 0 0 1 16 17H5a5 5 0 0 1-1-9.9V7a3 3 0 0 1 4.52-2.59A4.98 4.98 0 0 1 17 8c0 .38-.04.74-.12 1.1zM11 11h3l-4-4-4 4h3v3h2v-3z" />
+                    </svg>
+                    <span class="mt-2 text-sm">Select a GLB file</span>
+                    <input type='file' name="file" class="hidden" required accept=".glb" />
+                </label>
+            </div>
+            <button type="submit" class="w-full px-4 py-2 text-white bg-blue-500 rounded-lg hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50">
+                Upload Model
+            </button>
+        </form>
+
+        {% if qr_code_path %}
+        <div class="mt-8 text-center">
+            <h2 class="text-xl font-semibold mb-4 text-gray-700">Scan QR Code to View Model</h2>
+            <div class="p-4 bg-white rounded-lg shadow-lg inline-block">
+                <img src="{{ qr_code_path }}" alt="QR Code" class="w-48 h-48">
+            </div>
+            {% if public_url %}
+            <div class="mt-4">
+                <a href="{{ public_url }}" target="_blank" class="text-blue-500 hover:text-blue-600 break-all">
+                    {{ public_url }}
+                </a>
+            </div>
+            {% endif %}
+        </div>
+        {% endif %}
+    </div>
+
+    <script>
+        // Show filename when selected
+        document.querySelector('input[type="file"]').addEventListener('change', function(e) {
+            const fileName = e.target.files[0].name;
+            const label = this.previousElementSibling;
+            label.textContent = fileName;
+        });
+    </script>
+</body>
+</html>

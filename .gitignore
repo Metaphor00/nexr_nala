@@ -1,0 +1,6 @@
+__pycache__/
+*.pyc
+.env
+static/3d_models/*
+!static/3d_models/.gitkeep
+venv/
