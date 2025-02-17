@@ -1,0 +1,7 @@
+Flask==3.0.0
+flask-cors==5.0.0
+Werkzeug==3.0.1
+pyngrok==7.0.5
+qrcode==7.4.2
+Pillow==10.2.0  # Required for QR code generation
+python-dotenv==1.0.0
